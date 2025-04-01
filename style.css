@@ -1,4 +1,4 @@
 body {
-  background: lightblue;
-  font-family: Arial;
+  background-color: #4CAF50; /* Bright green */
+  color: white; /* Optional: changes text color to white for better contrast */
 }
