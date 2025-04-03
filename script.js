@@ -1,5 +1,5 @@
 // Password protection
-const ADMIN_PASSWORD = "dragon123"; // Change this to your real password
+const ADMIN_PASSWORD = "H3w9$kx"; // Change this to your real password
 
 // Admin toggle function
 function toggleAdmin() {
