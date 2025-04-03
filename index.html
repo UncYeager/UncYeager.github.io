@@ -8,16 +8,30 @@
         background-color: black;
         color: white;
         text-align: center;
-        font-family: Arial, sans-serif; /* Default for most text */
+        font-family: Arial, sans-serif;
       }
+      
       h2, h3 {
-        font-family: 'UnifrakturMaguntia', cursive; /* Old English for these */
+        font-family: 'UnifrakturMaguntia', cursive;
       }
+      
       .header h1 {
         color: black;
         margin: 0;
-        /* Font intentionally NOT specified */
+        /* No font specified - uses default */
       }
+      
+      /* Your original button styles */
+      .custom-button {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        margin: 0 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+      }
+      
       @keyframes spin-horizontal {
         from { transform: rotateY(0deg); }
         to { transform: rotateY(360deg); }
@@ -25,18 +39,23 @@
     </style>
   </head>
   <body>
+    <!-- Header -->
     <div class="header" style="background-color: white; padding: 10px;">
-      <h1>(^w^)</h1> <!-- Will use default font (Arial or browser's sans-serif) -->
+      <h1>(^w^)</h1>
     </div>
 
+    <!-- Buttons -->
     <div style="margin-top: 20px;">
-      <a href="blog.html" class="button">Blog</a>
-      <a href="movies.html" class="button">Movie Reviews</a>
+      <a href="blog.html" class="custom-button">Blog</a>
+      <a href="movies.html" class="custom-button">Movie Reviews</a>
     </div>
     
-    <h2>Welcome to the world's worst website!</h2> <!-- Old English -->
-    <h3>Kobayashi is my god that I worship every day, praise Kobayashi!</h3> <!-- Old English -->
-    <p>This is my first website that I used AI to create because I am not that smart to do it from scratch!</p> <!-- Arial (inherits from body) -->
+    <!-- Content -->
+    <h2>Welcome to the world's worst website!</h2>
+    <h3>Kobayashi is my god that I worship every day, praise Kobayashi!</h3>
+    <p>This is my first website that I used AI to create because I am not that smart to do it from scratch!</p>
+    
+    <!-- Spinning Image -->
     <img src="images/best gril in the world.jpg" 
          style="display: block; margin: 0 auto; width: 500px; animation: spin-horizontal 4s linear infinite;" 
          alt="Best Girl">
