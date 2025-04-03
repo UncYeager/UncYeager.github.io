@@ -1,8 +1,23 @@
-<body style="background-color: black;"> <!-- Your black background -->
-    <div style="background-color: white; padding: 10px; text-align: center;">
-        <h1 style="color: black; margin: 0;">(^w^)</h1>
-    </div>
-</body>
+/* General Styles */
+body {
+  background-color: black;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Header */
+.header {
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.header h1 {
+  color: black;
+  margin: 0;
+}
+
+/* Blog Images */
 .blog-post img {
   max-width: 100%;
   border-radius: 5px;
@@ -10,8 +25,10 @@
   border: 1px solid #333;
 }
 
+/* Image Upload Button */
 #postImage {
   margin: 10px 0;
   color: white;
   font-family: Arial;
+  width: 100%;
 }
