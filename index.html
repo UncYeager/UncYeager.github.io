@@ -2,16 +2,21 @@
 <html>
   <head>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <title>Una vez el arron estaba viendo esta costa en roblox</title>
     <style>
-      h1, h2, h3, p {
+      body {
+        background-color: black;
+        color: white;
         text-align: center;
-        font-family: 'UnifrakturMaguntia', cursive;
+        font-family: Arial, sans-serif; /* Default for most text */
+      }
+      h2, h3 {
+        font-family: 'UnifrakturMaguntia', cursive; /* Old English for these */
       }
       .header h1 {
         color: black;
         margin: 0;
+        /* Font intentionally NOT specified */
       }
       @keyframes spin-horizontal {
         from { transform: rotateY(0deg); }
@@ -19,37 +24,21 @@
       }
     </style>
   </head>
-  <body style="background-color: black; color: white;">
-    <div style="background-color: white; padding: 10px;">
-      <h1>(^w^)</h1>
+  <body>
+    <div class="header" style="background-color: white; padding: 10px;">
+      <h1>(^w^)</h1> <!-- Will use default font (Arial or browser's sans-serif) -->
     </div>
 
     <div style="margin-top: 20px;">
-      <a href="blog.html" style="
-          background-color: #333;
-          color: white;
-          padding: 10px 20px;
-          margin: 0 10px;
-          text-decoration: none;
-          border-radius: 5px;
-          display: inline-block;
-      ">Blog</a>
-      <a href="movies.html" style="
-          background-color: #333;
-          color: white;
-          padding: 10px 20px;
-          margin: 0 10px;
-          text-decoration: none;
-          border-radius: 5px;
-          display: inline-block;
-      ">Movie Reviews</a>
+      <a href="blog.html" class="button">Blog</a>
+      <a href="movies.html" class="button">Movie Reviews</a>
     </div>
     
-    <h2>Welcome to the world's worst website!</h2>
-    <h3>Kobayashi is my god that I worship every day, praise Kobayashi!</h3>
-    <p>This is my first website that I used AI to create because I am not that smart to do it from scratch!</p>
+    <h2>Welcome to the world's worst website!</h2> <!-- Old English -->
+    <h3>Kobayashi is my god that I worship every day, praise Kobayashi!</h3> <!-- Old English -->
+    <p>This is my first website that I used AI to create because I am not that smart to do it from scratch!</p> <!-- Arial (inherits from body) -->
     <img src="images/best gril in the world.jpg" 
-      style="display: block; margin: 0 auto; width: 500px; animation: spin-horizontal 4s linear infinite;" 
-      alt="Best Girl">
+         style="display: block; margin: 0 auto; width: 500px; animation: spin-horizontal 4s linear infinite;" 
+         alt="Best Girl">
   </body>
 </html>
