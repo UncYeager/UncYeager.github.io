@@ -3,3 +3,15 @@
         <h1 style="color: black; margin: 0;">(^w^)</h1>
     </div>
 </body>
+.blog-post img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin: 10px 0;
+  border: 1px solid #333;
+}
+
+#postImage {
+  margin: 10px 0;
+  color: white;
+  font-family: Arial;
+}
