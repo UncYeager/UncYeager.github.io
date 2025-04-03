@@ -29,5 +29,48 @@ document.getElementById("addPost").onclick = function() {
     
     document.querySelector(".content").insertBefore(newPost, document.querySelector(".blog-post"));
     alert("Post published!");
+    document.getElementById("addPost").onclick = async function() {
+  const title = document.getElementById("postTitle").value;
+  const content = document.getElementById("postContent").value;
+  const imageFile = document.getElementById("postImage").files[0];
+
+  if (title && content) {
+    let imageHTML = "";
+    
+    // If image is uploaded
+    if (imageFile) {
+      // Convert image to base64 for embedding
+      const imageBase64 = await getBase64(imageFile);
+      imageHTML = `<img src="${imageBase64}" style="max-width: 100%; border-radius: 5px; margin: 10px 0;">`;
+    }
+
+    const newPost = document.createElement("div");
+    newPost.className = "blog-post";
+    newPost.innerHTML = `
+      <div class="blog-title">${title}</div>
+      <div class="blog-date">Posted on: ${new Date().toLocaleDateString()}</div>
+      ${imageHTML}
+      <div class="blog-content"><p>${content.replace(/\n/g, '</p><p>')}</p></div>
+    `;
+
+    // Insert new post
+    document.querySelector(".content").insertBefore(newPost, document.querySelector(".blog-post"));
+    
+    // Clear form
+    document.getElementById("postTitle").value = "";
+    document.getElementById("postContent").value = "";
+    document.getElementById("postImage").value = "";
+  }
+};
+
+// Helper function to convert image to base64
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
   }
 };
