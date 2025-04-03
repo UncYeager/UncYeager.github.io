@@ -60,7 +60,7 @@
         margin: 30px 0;
         border-radius: 5px;
       }
-      #postTitle, #postContent {
+      #postTitle, #postContent, #postImage {
         width: 100%;
         background: #111;
         color: white;
@@ -79,6 +79,11 @@
         border: none;
         border-radius: 3px;
         cursor: pointer;
+      }
+      .blog-post img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin: 10px 0;
       }
     </style>
   </head>
@@ -99,25 +104,17 @@
         <a href="../meme.html" class="custom-button">lol</a>
       </div>
       
-      <!-- Admin Controls (NOW IN CORRECT POSITION) -->
+      <!-- Admin Controls -->
       <button id="adminToggle" style="display:none; background: gold; padding: 5px 10px;">👑 Admin Mode</button>
       <div id="adminPanel" style="display:none;">
         <h3>Create New Post</h3>
         <input type="text" id="postTitle" placeholder="Title"><br>
         <textarea id="postContent" placeholder="Content"></textarea><br>
+        <label for="postImage">Image (optional):</label>
+        <input type="file" id="postImage" accept="image/*"><br>
+        <small>Max 2MB - JPG/PNG only</small><br>
         <button id="addPost">Publish</button>
-      <div id="adminPanel" style="display:none;">
-  <h3>Create New Post</h3>
-  <input type="text" id="postTitle" placeholder="Title"><br>
-  <textarea id="postContent" placeholder="Content"></textarea><br>
-  
-  <!-- Image Upload Field -->
-  <label for="postImage">Image (optional):</label>
-  <input type="file" id="postImage" accept="image/*"><br>
-  <small>Max 2MB - JPG/PNG only</small><br>
-  
-  <button id="addPost">Publish</button>
-</div>
+      </div>
       
       <h2>My Blog</h2>
       
@@ -144,9 +141,9 @@
       <h1>($ _ $)</h1>
     </div>
 
-    <!-- Script should be at BOTTOM of body -->
+    <!-- Script -->
     <script>
-      // Simple password protection
+      // Password protection
       const ADMIN_PASSWORD = "your_password_here"; // CHANGE THIS!
       
       document.getElementById("adminToggle").style.display = "block";
@@ -159,26 +156,52 @@
         }
       };
       
-      document.getElementById("addPost").onclick = function() {
+      // Image to Base64 converter
+      function getBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+        });
+      }
+      
+      // Post creation with image support
+      document.getElementById("addPost").onclick = async function() {
         const title = document.getElementById("postTitle").value;
         const content = document.getElementById("postContent").value;
+        const imageFile = document.getElementById("postImage").files[0];
         
         if (title && content) {
-          const postsContainer = document.querySelector(".content");
+          let imageHTML = "";
+          
+          if (imageFile) {
+            try {
+              const imageBase64 = await getBase64(imageFile);
+              imageHTML = `<img src="${imageBase64}" alt="Blog image">`;
+            } catch (error) {
+              console.error("Image error:", error);
+            }
+          }
+          
           const newPost = document.createElement("div");
           newPost.className = "blog-post";
           newPost.innerHTML = `
             <div class="blog-title">${title}</div>
             <div class="blog-date">Posted on: ${new Date().toLocaleDateString()}</div>
+            ${imageHTML}
             <div class="blog-content"><p>${content.replace(/\n/g, '</p><p>')}</p></div>
           `;
           
-          // Insert new post after admin panel but before other posts
-          postsContainer.insertBefore(newPost, postsContainer.querySelector(".blog-post"));
+          document.querySelector(".content").insertBefore(
+            newPost, 
+            document.querySelector(".blog-post")
+          );
           
           // Clear form
           document.getElementById("postTitle").value = "";
           document.getElementById("postContent").value = "";
+          document.getElementById("postImage").value = "";
         }
       };
     </script>
