@@ -106,7 +106,18 @@
         <input type="text" id="postTitle" placeholder="Title"><br>
         <textarea id="postContent" placeholder="Content"></textarea><br>
         <button id="addPost">Publish</button>
-      </div>
+      <div id="adminPanel" style="display:none;">
+  <h3>Create New Post</h3>
+  <input type="text" id="postTitle" placeholder="Title"><br>
+  <textarea id="postContent" placeholder="Content"></textarea><br>
+  
+  <!-- Image Upload Field -->
+  <label for="postImage">Image (optional):</label>
+  <input type="file" id="postImage" accept="image/*"><br>
+  <small>Max 2MB - JPG/PNG only</small><br>
+  
+  <button id="addPost">Publish</button>
+</div>
       
       <h2>My Blog</h2>
       
