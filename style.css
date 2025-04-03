@@ -1,4 +1,6 @@
-body {
-  background-color: #000000; /* Bright green */
-  color: white; /* Optional: changes text color to white for better contrast */
-}
+<body style="background-color: black;"> <!-- Your black background -->
+    <div style="background-color: white; padding: 10px; text-align: center;">
+        <h1 style="color: black; margin: 0;">(^w^)</h1>
+    </div>
+    <hr style="border-color: white;"> <!-- Optional: White line below -->
+</body>
