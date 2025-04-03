@@ -2,10 +2,16 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <title>Una ves el arron estaba viendo esta costa en roblox</title>
+    <title>Una vez el arron estaba viendo esta costa en roblox</title>
     <style>
       h1 {
         text-align: center;
+      } /* Missing closing brace */
+      
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
     </style>
   </head>
   <body style="background-color: black; color: white;">
@@ -39,10 +45,10 @@
     <h2>About Me</h2>
     <h3>Kobayshi is my god that I worship every day, praise kobayashi!</h3>
     <p>This is my first website that I used AI to create because I am not that smart to do it from scratch!</p>
-    <img src = "images/best gril in the world.jpg" 
-      style = "display: block; margin-left: auto; margin-right: auto; 
-      width = 500px;
+    <img src="images/best gril in the world.jpg" 
+      style="display: block; margin-left: auto; margin-right: auto; 
+      width: 500px;
       animation: spin 4s linear infinite;"
-      alt "Best Girl>
+      alt="Best Girl"> <!-- Fixed: missing = and closing " -->
   </body>
 </html>
