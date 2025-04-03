@@ -9,16 +9,29 @@
         color: white;
         text-align: center;
         font-family: Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
       
       h2, h3, p, .custom-button {
         font-family: 'UnifrakturMaguntia', cursive;
       }
       
-      .header h1 {
+      .header h1, .footer h1 {
         color: black;
         margin: 0;
-        /* No font specified - uses default */
+      }
+      
+      .header, .footer {
+        background-color: white;
+        padding: 10px;
+      }
+      
+      .content {
+        flex: 1;
+        padding-bottom: 20px;
       }
       
       /* Your original button styles */
@@ -36,33 +49,41 @@
         from { transform: rotateY(0deg); }
         to { transform: rotateY(360deg); }
       }
+      
+      .image-caption {
+        margin-top: 20px;
+      }
     </style>
   </head>
   <body>
     <!-- Header -->
-    <div class="header" style="background-color: white; padding: 10px;">
+    <div class="header">
       <h1>(^w^)</h1>
     </div>
 
-    <!-- Buttons -->
-    <div style="margin-top: 20px;">
-      <a href="blog.html" class="custom-button">Blog</a>
-      <a href="reviews.html" class="custom-button">Reviews</a>
-      <a href="things I like".html" class="custom-button">Things I like</a>
-      <a href="meme.html" class="custom-button">lol</a>
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Buttons -->
+      <div style="margin-top: 20px;">
+        <a href="blog.html" class="custom-button">Blog</a>
+        <a href="reviews.html" class="custom-button">Reviews</a>
+        <a href="things I like".html" class="custom-button">Things I like</a>
+        <a href="meme.html" class="custom-button">lol</a>
+      </div>
+      
+      <!-- Content -->
+      <h2>Welcome to the world's worst website!</h2>
+      <h3> This is my first website that "I" have created. Just kidding, I used AI to help me create it from schatch using html! </h3>
+      
+      <!-- Spinning Image -->
+      <img src="images/best gril in the world.jpg" 
+           style="display: block; margin: 0 auto; width: 500px; animation: spin-horizontal 4s linear infinite;" 
+           alt="Best Girl">
+      <div class="image-caption">
+        <p>( I dont like the show or manga I just like kobayashi! )</p>
+      </div>
     </div>
     
-    <!-- Content -->
-    <h2>Welcome to the world's worst website!</h2>
-    <h3> This is my first website that "I" have created. Just kidding, I used AI to help me create it from schatch using html! </h3>
-    
-    <!-- Spinning Image -->
-    <img src="images/best gril in the world.jpg" 
-         style="display: block; margin: 0 auto; width: 500px; animation: spin-horizontal 4s linear infinite;" 
-         alt="Best Girl">
-    <div class="image-caption">
-      <p>( I dont like the show or manga I just like kobayashi! )</p>
-    </div>
     <!-- Footer -->
     <div class="footer">
       <h1>(^w^)</h1>
