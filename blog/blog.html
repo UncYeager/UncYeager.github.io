@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Add these before your existing script -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<script>
+  // Your Firebase configuration (replace with yours)
+  const firebaseConfig = {
+    apiKey: "AIzaSyB...",
+    authDomain: "your-project.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123...:web:abc..."
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <title>My Blog - ($ _ $)</title>
     <style>
