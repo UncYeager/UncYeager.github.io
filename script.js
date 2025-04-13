@@ -1,20 +1,15 @@
-// Password protection
-const ADMIN_PASSWORD = "test22194"; // Change this to your real password
-
-// Admin toggle function
-function toggleAdmin() {
+// Password protection (unchanged)
+const ADMIN_PASSWORD = "test22194"; // CHANGE THIS!
+document.getElementById("adminToggle").style.display = "block";
+document.getElementById("adminToggle").onclick = function() {
   const password = prompt("Enter admin password:");
   if (password === ADMIN_PASSWORD) {
     document.getElementById("adminPanel").style.display = "block";
-    document.getElementById("adminToggle").style.display = "none";
+    this.style.display = "none";
   }
-}
+};
 
-// Initialize admin button
-document.getElementById("adminToggle").style.display = "block";
-document.getElementById("adminToggle").onclick = toggleAdmin;
-
-// Helper function to convert image to base64
+// Image to Base64 converter (unchanged)
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -24,46 +19,78 @@ function getBase64(file) {
   });
 }
 
-// Post creation function (with image support)
+// Load all posts when page loads
+document.addEventListener('DOMContentLoaded', loadPosts);
+
+async function loadPosts() {
+  try {
+    const querySnapshot = await db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .get();
+      
+    querySnapshot.forEach((doc) => {
+      renderPost(doc.data());
+    });
+  } catch (error) {
+    console.error("Error loading posts:", error);
+  }
+}
+
+// Render a single post
+function renderPost(post) {
+  const newPost = document.createElement("div");
+  newPost.className = "blog-post";
+  newPost.innerHTML = `
+    <div class="blog-title">${post.title}</div>
+    <div class="blog-date">Posted on: ${new Date(post.timestamp).toLocaleDateString()}</div>
+    ${post.image || ''}
+    <div class="blog-content"><p>${post.content.replace(/\n/g, '</p><p>')}</p></div>
+  `;
+  
+  document.querySelector(".content").insertBefore(
+    newPost, 
+    document.querySelector(".blog-post")
+  );
+}
+
+// Create new post
 document.getElementById("addPost").onclick = async function() {
   const title = document.getElementById("postTitle").value;
   const content = document.getElementById("postContent").value;
   const imageFile = document.getElementById("postImage").files[0];
-
+  
   if (title && content) {
-    let imageHTML = "";
+    let imageBase64 = "";
     
-    // If image is uploaded
     if (imageFile) {
       try {
-        const imageBase64 = await getBase64(imageFile);
-        imageHTML = `<img src="${imageBase64}" style="max-width: 100%; border-radius: 5px; margin: 10px 0;">`;
+        imageBase64 = await getBase64(imageFile);
       } catch (error) {
-        console.error("Error processing image:", error);
+        console.error("Image error:", error);
       }
     }
-
-    const newPost = document.createElement("div");
-    newPost.className = "blog-post";
-    newPost.innerHTML = `
-      <div class="blog-title">${title}</div>
-      <div class="blog-date">Posted on: ${new Date().toLocaleDateString()}</div>
-      ${imageHTML}
-      <div class="blog-content"><p>${content.replace(/\n/g, '</p><p>')}</p></div>
-    `;
-
-    // Insert new post at the top
-    const contentDiv = document.querySelector(".content");
-    const firstPost = contentDiv.querySelector(".blog-post");
-    contentDiv.insertBefore(newPost, firstPost);
     
-    // Clear form
-    document.getElementById("postTitle").value = "";
-    document.getElementById("postContent").value = "";
-    document.getElementById("postImage").value = "";
-    
-    alert("Post published!");
-  } else {
-    alert("Please fill in both title and content!");
+    try {
+      await db.collection("posts").add({
+        title,
+        content,
+        image: imageBase64 ? `<img src="${imageBase64}" alt="Blog image">` : "",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      
+      // Clear form
+      document.getElementById("postTitle").value = "";
+      document.getElementById("postContent").value = "";
+      document.getElementById("postImage").value = "";
+      
+      // Reload posts to show the new one
+      // (We could optimize this by just adding the new post)
+      document.querySelectorAll('.blog-post:not(.template)').forEach(el => el.remove());
+      loadPosts();
+      
+    } catch (error) {
+      console.error("Error adding post:", error);
+      alert("Failed to save post. Check console for details.");
+    }
   }
 };
