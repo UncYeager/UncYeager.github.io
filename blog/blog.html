@@ -1,167 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Add these before your existing script -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  // Your Firebase configuration (replace with yours)
-  const firebaseConfig = {
-    apiKey: "AIzaSyB...",
-    authDomain: "your-project.firebaseapp.com",
-    projectId: "your-project-id",
-    storageBucket: "your-project.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123...:web:abc..."
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-</script>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <title>My Blog - ($ _ $)</title>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
     <style>
-      body {
-        background-color: black;
-        color: white;
-        text-align: center;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-      
-      h2, h3, p, .custom-button, .blog-title {
-        font-family: 'UnifrakturMaguntia', cursive;
-      }
-      
-      .header h1, .footer h1 {
-        color: black;
-        margin: 0;
-      }
-      
-      .header, .footer {
-        background-color: white;
-        padding: 10px;
-      }
-      
-      .content {
-        flex: 1;
-        padding: 20px;
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: left;
-      }
-      
-      .custom-button {
-        background-color: #fffcfc;
-        color: black;
-        padding: 10px 20px;
-        margin: 0 10px;
-        text-decoration: none;
-        border-radius: 5px;
-        display: inline-block;
-      }
-      
-      .blog-post {
-        margin-bottom: 40px;
-        border-bottom: 1px solid #333;
-        padding-bottom: 20px;
-      }
-      
-      /* ADMIN STYLES */
-      #adminPanel {
-        background: #222;
-        padding: 20px;
-        margin: 30px 0;
-        border-radius: 5px;
-      }
-      #postTitle, #postContent, #postImage {
-        width: 100%;
-        background: #111;
-        color: white;
-        border: 1px solid #444;
-        padding: 8px;
-        margin: 5px 0;
-        font-family: Arial;
-      }
-      #postContent {
-        min-height: 100px;
-      }
-      #addPost {
-        background: #fff;
-        color: black;
-        padding: 8px 15px;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-      .blog-post img {
-        max-width: 100%;
-        border-radius: 5px;
-        margin: 10px 0;
-      }
+      /* Your existing CSS styles */
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <div class="header">
-      <h1>($ _ $)</h1>
-    </div>
+    <!-- Your existing HTML body content -->
 
-    <!-- Main Content -->
-    <div class="content">
-      <!-- Navigation Buttons -->
-      <div style="text-align: center; margin: 20px 0;">
-        <a href="../index.html" class="custom-button">Home</a>
-        <a href="#" class="custom-button">Blog</a>
-        <a href="../reviews.html" class="custom-button">Reviews</a>
-        <a href="../things I like.html" class="custom-button">Things I like</a>
-        <a href="../meme.html" class="custom-button">lol</a>
-      </div>
-      
-      <!-- Admin Controls -->
-      <button id="adminToggle" style="display:none; background: gold; padding: 5px 10px;">👑 Admin Mode</button>
-      <div id="adminPanel" style="display:none;">
-        <h3>Create New Post</h3>
-        <input type="text" id="postTitle" placeholder="Title"><br>
-        <textarea id="postContent" placeholder="Content"></textarea><br>
-        <label for="postImage">Image (optional):</label>
-        <input type="file" id="postImage" accept="image/*"><br>
-        <small>Max 2MB - JPG/PNG only</small><br>
-        <button id="addPost">Publish</button>
-      </div>
-      
-      <h2>My Blog</h2>
-      
-      <!-- Blog Posts -->
-      <div class="blog-post">
-        <div class="blog-title">First Blog Post!</div>
-        <div class="blog-date">Posted on: October 31, 2023</div>
-        <div class="blog-content">
-          <p>Welcome to my blog! This is my first post.</p>
-        </div>
-      </div>
-      
-      <div class="blog-post">
-        <div class="blog-title">Why Kobayashi is Best Girl</div>
-        <div class="blog-date">Posted on: November 1, 2023</div>
-        <div class="blog-content">
-          <p>Let me explain why Kobayashi is the best character...</p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Footer -->
-    <div class="footer">
-      <h1>($ _ $)</h1>
-    </div>
-
-    <!-- Script -->
+    <!-- Script at bottom of body -->
     <script>
+      // Firebase configuration - REPLACE WITH YOUR ACTUAL CONFIG
+      const firebaseConfig = {
+        apiKey: "AIzaSyAf5WOJQex9gkbu4D4-FByRd80oV1CyHxQ",
+        authDomain: "myblog-b5fc3.firebaseapp.com",
+        projectId: "myblog-b5fc3",
+        storageBucket: "myblog-b5fc3.appspot.com",
+        messagingSenderId: "20036951841",
+        appId: "1:20036951841:web:f088d57c590b872147a860"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
       // Password protection
-      const ADMIN_PASSWORD = "test22194"; // CHANGE THIS!
+      const ADMIN_PASSWORD = "test22194";
       
       document.getElementById("adminToggle").style.display = "block";
       
@@ -172,7 +41,7 @@
           this.style.display = "none";
         }
       };
-      
+
       // Image to Base64 converter
       function getBase64(file) {
         return new Promise((resolve, reject) => {
@@ -182,45 +51,83 @@
           reader.onerror = error => reject(error);
         });
       }
-      
-      // Post creation with image support
+
+      // Load posts from Firestore
+      async function loadPosts() {
+        try {
+          const querySnapshot = await db.collection("posts")
+            .orderBy("timestamp", "desc")
+            .get();
+            
+          querySnapshot.forEach((doc) => {
+            const post = doc.data();
+            renderPost(post);
+          });
+        } catch (error) {
+          console.error("Error loading posts:", error);
+        }
+      }
+
+      // Render a post to the page
+      function renderPost(post) {
+        const newPost = document.createElement("div");
+        newPost.className = "blog-post";
+        newPost.innerHTML = `
+          <div class="blog-title">${post.title}</div>
+          <div class="blog-date">Posted on: ${new Date(post.timestamp?.toDate() || post.timestamp).toLocaleDateString()}</div>
+          ${post.image || ''}
+          <div class="blog-content"><p>${post.content.replace(/\n/g, '</p><p>')}</p></div>
+        `;
+        
+        document.querySelector(".content").insertBefore(
+          newPost, 
+          document.querySelector(".blog-post")
+        );
+      }
+
+      // Save new post to Firestore
       document.getElementById("addPost").onclick = async function() {
         const title = document.getElementById("postTitle").value;
         const content = document.getElementById("postContent").value;
         const imageFile = document.getElementById("postImage").files[0];
         
         if (title && content) {
-          let imageHTML = "";
+          let imageBase64 = "";
           
           if (imageFile) {
             try {
-              const imageBase64 = await getBase64(imageFile);
-              imageHTML = `<img src="${imageBase64}" alt="Blog image">`;
+              imageBase64 = await getBase64(imageFile);
             } catch (error) {
               console.error("Image error:", error);
             }
           }
           
-          const newPost = document.createElement("div");
-          newPost.className = "blog-post";
-          newPost.innerHTML = `
-            <div class="blog-title">${title}</div>
-            <div class="blog-date">Posted on: ${new Date().toLocaleDateString()}</div>
-            ${imageHTML}
-            <div class="blog-content"><p>${content.replace(/\n/g, '</p><p>')}</p></div>
-          `;
-          
-          document.querySelector(".content").insertBefore(
-            newPost, 
-            document.querySelector(".blog-post")
-          );
-          
-          // Clear form
-          document.getElementById("postTitle").value = "";
-          document.getElementById("postContent").value = "";
-          document.getElementById("postImage").value = "";
+          try {
+            // Save to Firestore
+            await db.collection("posts").add({
+              title,
+              content,
+              image: imageBase64 ? `<img src="${imageBase64}" alt="Blog image">` : "",
+              timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            
+            // Clear form
+            document.getElementById("postTitle").value = "";
+            document.getElementById("postContent").value = "";
+            document.getElementById("postImage").value = "";
+            
+            // Reload posts
+            await loadPosts();
+            
+          } catch (error) {
+            console.error("Error saving post:", error);
+            alert("Failed to save post");
+          }
         }
       };
+
+      // Load posts when page loads
+      document.addEventListener('DOMContentLoaded', loadPosts);
     </script>
   </body>
 </html>
