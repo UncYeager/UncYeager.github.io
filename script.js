@@ -1,32 +1,24 @@
+<!-- Load Firebase SDKs ONCE at the top of your file -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
 <script>
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-const firebaseConfig = {
-
-  apiKey: "AIzaSyAf5WOJQex9gkbu4D4-FByRd80oV1CyHxQ",
-
-  authDomain: "myblog-b5fc3.firebaseapp.com",
-
-  projectId: "myblog-b5fc3",
-
-  storageBucket: "myblog-b5fc3.firebasestorage.app",
-
-  messagingSenderId: "20036951841",
-
-  appId: "1:20036951841:web:f088d57c590b872147a860",
-
-  measurementId: "G-MN5XDTP5HJ"
-
-};
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAf5WOJQex9gkbu4D4-FByRd80oV1CyHxQ",
+    authDomain: "myblog-b5fc3.firebaseapp.com",
+    projectId: "myblog-b5fc3",
+    storageBucket: "myblog-b5fc3.appspot.com", // Changed to standard bucket URL
+    messagingSenderId: "20036951841",
+    appId: "1:20036951841:web:f088d57c590b872147a860"
+  };
   
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
   // Password protection
-  const ADMIN_PASSWORD = "test22194"; // Change to a strong password!
+  const ADMIN_PASSWORD = "test22194"; // 🔒 Change this to a STRONG password!
   document.getElementById("adminToggle").style.display = "block";
   
   document.getElementById("adminToggle").onclick = function() {
@@ -54,8 +46,7 @@ const firebaseConfig = {
 
   async function loadPosts() {
     try {
-      // Clear existing posts (keep only template posts)
-      const postsContainer = document.querySelector(".content");
+      // Clear existing posts (except templates)
       document.querySelectorAll('.blog-post:not(.template)').forEach(el => el.remove());
       
       const querySnapshot = await db.collection("posts")
