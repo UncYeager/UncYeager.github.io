@@ -1,3 +1,37 @@
+// In your loadPosts() function, add error logging:
+async function loadPosts() {
+  try {
+    console.log("Loading posts from Firestore...");
+    const querySnapshot = await db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .get();
+    
+    console.log(`Found ${querySnapshot.size} posts`);
+    querySnapshot.forEach((doc) => {
+      console.log("Post data:", doc.data());
+      renderPost(doc.data());
+    });
+  } catch (error) {
+    console.error("Firestore load error:", error);
+    alert("Error loading posts. Check console for details.");
+  }
+}
+
+// In your post creation function, add success logging:
+document.getElementById("addPost").onclick = async function() {
+  // ... existing password check ...
+  
+  try {
+    const docRef = await db.collection("posts").add({
+      // ... your post data ...
+    });
+    console.log("Post saved with ID: ", docRef.id);
+    // ... rest of your code ...
+  } catch (error) {
+    console.error("Firestore save error:", error);
+    // ... error handling ...
+  }
+};
 <!-- Load Firebase SDKs ONCE at the top of your file -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
