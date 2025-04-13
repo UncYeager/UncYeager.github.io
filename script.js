@@ -1,15 +1,25 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 <script>
-  // Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyAf5WOJQex9gkbu4D4-FByRd80oV1CyHxQ",
-    authDomain: "myblog-b5fc3.firebaseapp.com",
-    projectId: "myblog-b5fc3",
-    storageBucket: "myblog-b5fc3.appspot.com",
-    messagingSenderId: "20036951841",
-    appId: "1:20036951841:web:f483292435a3710647a860"
-  };
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyAf5WOJQex9gkbu4D4-FByRd80oV1CyHxQ",
+
+  authDomain: "myblog-b5fc3.firebaseapp.com",
+
+  projectId: "myblog-b5fc3",
+
+  storageBucket: "myblog-b5fc3.firebasestorage.app",
+
+  messagingSenderId: "20036951841",
+
+  appId: "1:20036951841:web:f088d57c590b872147a860",
+
+  measurementId: "G-MN5XDTP5HJ"
+
+};
   
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
