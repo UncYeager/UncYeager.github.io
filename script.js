@@ -1,7 +1,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 <script>
-  // Firebase configuration (use your regenerated API key)
+  // Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyAf5WOJQex9gkbu4D4-FByRd80oV1CyHxQ",
     authDomain: "myblog-b5fc3.firebaseapp.com",
@@ -16,7 +16,7 @@
   const db = firebase.firestore();
 
   // Password protection
-  const ADMIN_PASSWORD = "test22194"; // CHANGE THIS TO SOMETHING MORE SECURE!
+  const ADMIN_PASSWORD = "test22194"; // Change to a strong password!
   document.getElementById("adminToggle").style.display = "block";
   
   document.getElementById("adminToggle").onclick = function() {
@@ -44,7 +44,8 @@
 
   async function loadPosts() {
     try {
-      // Clear existing posts (except the template ones in HTML)
+      // Clear existing posts (keep only template posts)
+      const postsContainer = document.querySelector(".content");
       document.querySelectorAll('.blog-post:not(.template)').forEach(el => el.remove());
       
       const querySnapshot = await db.collection("posts")
@@ -85,8 +86,8 @@
       return;
     }
     
-    const title = document.getElementById("postTitle").value;
-    const content = document.getElementById("postContent").value;
+    const title = document.getElementById("postTitle").value.trim();
+    const content = document.getElementById("postContent").value.trim();
     const imageFile = document.getElementById("postImage").files[0];
     
     if (!title || !content) {
@@ -115,9 +116,9 @@
       }
     }
     
+    const btn = this;
     try {
       // Show loading state
-      const btn = this;
       btn.disabled = true;
       btn.textContent = "Publishing...";
       
